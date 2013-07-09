@@ -6,12 +6,12 @@
 import java.io.*;
 
 /**
- *
+ * This is a hello world style program I have written to showcase basic Java knowledge.
  * @author Dillon Welch
  */
 public class JavaHelloWorld 
 {
-    
+	// Constants for the different user input states. Used to decide which branch of code to go down.
     static final int startState = 0;
     static final int factState = 1;
     static final int jokeState = 2;
@@ -20,22 +20,23 @@ public class JavaHelloWorld
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
-        // TODO code application logic here
-       
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws InterruptedException 
+	{       
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // Variable for reading in user input.
         
-        String inputResult = null;
-        int finalResult = 0;
+        String inputResult = null; // Variable for storing user input before being converted.
+        int finalResult = 0; // Variable for final storage of user input, used to decide which branch of code to go down.
         
         System.out.println("Hello there!!");
         System.out.println("Would you like to hear some facts, or hear some jokes?");
-        
+		
+		// Continuously ask for input until proper, valid input has been received.
         while(finalResult == 0)
         {
-
             System.out.println("Press 1 to hear some facts.");
             System.out.println("Press 2 to hear some jokes.");
+			
+			// Get the input from the user.
             try
             {
                 inputResult = br.readLine();
@@ -46,17 +47,20 @@ public class JavaHelloWorld
                 System.exit(1);
             }
             
+			// Convert it to a number.
             try
             {
                 finalResult = Integer.parseInt(inputResult);
             }
             catch(Exception e)
             {
+				// If the user did not type in a number, ask for input again.
                 System.err.println("Hey silly! That's not a number!.");
                 finalResult = 0;
                 continue;
             }
             
+			// If the user input a number, but not a valid number, ask for input again.
             if(finalResult <= startState || finalResult > finalState)
             {
                 System.err.println("Hey goofball! That's number is not a valid choice!");
@@ -64,6 +68,8 @@ public class JavaHelloWorld
             }
         }
        
+		// Based on user input, go down a particular path.
+		// Sleeps are inserted between each statement to give the user time to read each line - and for dramatic effect.
         switch(finalResult)
         {
             case factState:
